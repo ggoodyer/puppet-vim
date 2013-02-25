@@ -5,9 +5,11 @@
 #  include adminvim
 
 class vim {
-  
-  exec { "git clone https://github.com/raphael/adam-vim.git ~/.vim":
-    creates => "~/.vim",
+ 
+  include homebrew
+ 
+  exec { "git clone https://github.com/raphael/adam-vim.git /Users/$USER/.vim":
+    creates => "/Users/$USER/.vim",
     provider => shell,
     logoutput => "all",
   }
