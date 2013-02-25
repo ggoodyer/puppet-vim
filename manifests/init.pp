@@ -1,20 +1,19 @@
-
 # Public: Install https://github.com/raphael/adam-vim.git 
 #
 # Examples
 #
 #  include adminvim
-class adamvimj {
-  package { 'AdamVim':
-    provider => 'git',
-    source   => 'https://github.com/raphael/adam-vim.git',
-    target   => '~/.vim',
+class vim {
+
+  exec { "gitclone":
+    command => "git clone https://github.com/raphael/adam-vim.git ~/.vim", 
+    creates => "~/.vim",
+    logoutput => "on_failure",
   }
 
-  exec { 'softlink-vimrc':
-    command     => "ln -s ~/.vim/vimrc ~/.vimrc.",
-    provider    => shell,
-    timeout     => 30,
-    refreshonly => true
+  exec { "softlink":
+    command => "ln -s ~/.vim/vimrc ~/.vimrc", 
+    creates => "~/.vimrc",
+    logoutput => "on_failure",
   }
 }
