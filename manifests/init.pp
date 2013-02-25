@@ -6,17 +6,17 @@
 
 class vim {
  
-  include homebrew
- 
-  exec { "git clone https://github.com/raphael/adam-vim.git /Users/$USER/.vim":
-    creates => "/Users/$USER/.vim",
-    provider => shell,
-    logoutput => "all",
+  exec { "git clone https://github.com/raphael/adam-vim.git /Users/ggoodyer/.vim":
+    path => "/opt/boxen/homebrew/bin/",
+    creates => "/Users/ggoodyer/.vim",
+    logoutput => "true",
   }
 
-#  exec { "softlink":
-#    command => "ln -s ~/.vim/vimrc ~/.vimrc",
-#    creates => "~/.vimrc",
-#    logoutput => "on_failure",
-#  }
+  exec { "ln -s /Users/ggoodyer/.vim/.vimrc /Users/ggoodyer/.vimrc":
+    path => "/bin/",
+    creates => "/Users/ggoodyer/.vimrc",
+    logoutput => "true",
+  }
 }
+
+#class {'vim': }
