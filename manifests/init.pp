@@ -3,11 +3,12 @@
 # Examples
 #
 #  include adminvim
-class vim {
 
-  exec { "gitclone":
-    command => "git clone https://github.com/raphael/adam-vim.git ~/.vim", 
+class vim {
+  
+  exec { "git clone https://github.com/raphael/adam-vim.git ~/.vim":
     creates => "~/.vim",
+    provider => shell,
     logoutput => "on_failure",
   }
 
