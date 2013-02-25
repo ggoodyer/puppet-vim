@@ -9,12 +9,12 @@ class vim {
   exec { "git clone https://github.com/raphael/adam-vim.git ~/.vim":
     creates => "~/.vim",
     provider => shell,
-    logoutput => "on_failure",
+    logoutput => "all",
   }
 
-  exec { "softlink":
-    command => "ln -s ~/.vim/vimrc ~/.vimrc", 
-    creates => "~/.vimrc",
-    logoutput => "on_failure",
-  }
+#  exec { "softlink":
+#    command => "ln -s ~/.vim/vimrc ~/.vimrc",
+#    creates => "~/.vimrc",
+#    logoutput => "on_failure",
+#  }
 }
