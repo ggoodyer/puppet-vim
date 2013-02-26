@@ -9,24 +9,28 @@ class adamvim {
   include boxen::config
   package { "vim": ensure => present }
 
-  $home   = "${boxen::config::home}"
-  $bindir = "${home}/bin"
-  $bin    = "${bindir}/"
-  $uri    = 'https://github.com/raphael/adam-vim.git'
-  $dest   = '/Users/ggoodyer/.vim'
+  $home    = "${boxen::config::home}"
+  $bindir  = "${home}/bin"
+  $bin     = "${bindir}/"
+  $uri     = 'https://github.com/raphael/adam-vim.git'
+  
+  $userdir = '/Users/ggoodyer'
+  $vim     = "${userdir}/.vim"
+  $vimrc   = "${userdir}/.vimrc"
 
   exec { 'clone adam-vim.git':
     command   => "git clone ${uri} ${dest}",
     path      => "${home}/homebrew/bin/",
-    creates   => "${dest}",
+    creates   => "${vim}",
     logoutput => "true",
   }
 
-#  exec { 'ln -s /Users/ggoodyer/.vim/.vimrc /Users/ggoodyer/.vimrc':
-#    path => "/bin/",
-#    creates => "/Users/ggoody   er/.vimrc",
-#    logoutput => "true",
-#  }
+  exec { 'softlink .vimrc':
+    command   => "ln -s ${vim}/.vimrc ${vimrc}",
+    path      => '/bin/',
+    creates   => "${vimrc}",
+    logoutput => "true",
+ }
+
 }
 
-#class {'vim': }
