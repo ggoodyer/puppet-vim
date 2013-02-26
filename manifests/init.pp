@@ -5,18 +5,28 @@
 #  include adamvim
 
 class adamvim {
- 
-  exec { 'git clone https://github.com/raphael/adam-vim.git /Users/ggoodyer/.vim':
-    path => "/opt/boxen/homebrew/bin/",
-    creates => "/Users/ggoodyer/.vim",
+
+  include boxen::config
+  package { "vim": ensure => present }
+
+  $home   = "${boxen::config::home}"
+  $bindir = "${home}/bin"
+  $bin    = "${bindir}/"
+  $uri    = 'https://github.com/raphael/adam-vim.git'
+  $dest   = '/Users/ggoodyer/.vim'
+
+  exec { 'clone adam-vim.git':
+    command   => "git clone ${uri} ${dest}"
+    path      => "${home}/homebrew/bin/",
+    creates   => "${dest}",
     logoutput => "true",
   }
 
-  exec { 'ln -s /Users/ggoodyer/.vim/.vimrc /Users/ggoodyer/.vimrc':
-    path => "/bin/",
-    creates => "/Users/ggoody   er/.vimrc",
-    logoutput => "true",
-  }
+#  exec { 'ln -s /Users/ggoodyer/.vim/.vimrc /Users/ggoodyer/.vimrc':
+#    path => "/bin/",
+#    creates => "/Users/ggoody   er/.vimrc",
+#    logoutput => "true",
+#  }
 }
 
 #class {'vim': }
