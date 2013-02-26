@@ -17,12 +17,6 @@ class adamvim {
   $vim     = "${userdir}/.vim"
   $vimrc   = "${userdir}/.vimrc"
 
-  # mkdir ~/.vim
-  file { "${vim}":
-       ensure => directory,
-       mode => '0755',
-  }
-
   # clone the git repo to tmp
   exec { 'clone adam-vim.git':
     command   => "git clone ${uri}",
@@ -36,14 +30,14 @@ class adamvim {
  
   # copy the repo to ~/.vim
   file { "${vim}":
-    source => "/tmp/adam-vim",
-    recurse => true,
+    source    => "/tmp/adam-vim",
+    recurse   => true,
   }
 
   # More maintainable:
   file { "${vim}/.vimrc":
-    ensure => link,
-    target => "${vimrc}",
+    ensure    => link,
+    target    => "${vimrc}",
   }  
 
 }
