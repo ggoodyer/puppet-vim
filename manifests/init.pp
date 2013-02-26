@@ -18,7 +18,7 @@ class adamvim {
   $vimrc   = "${userdir}/.vimrc"
 
   # mkdir ~/.vim
-  file { '${vim}':
+  file { "${vim}":
        ensure => directory,
        mode => '0755',
   }
