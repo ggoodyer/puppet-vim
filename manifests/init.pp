@@ -7,7 +7,7 @@
 class adamvim {
 
   include boxen::config
-  package { "vim": ensure => present }
+  # package { "vim": ensure => present }
 
   $home    = "${boxen::config::home}"
   $bindir  = "${home}/bin"
