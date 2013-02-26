@@ -16,7 +16,7 @@ class adamvim {
   $dest   = '/Users/ggoodyer/.vim'
 
   exec { 'clone adam-vim.git':
-    command   => "git clone ${uri} ${dest}"
+    command   => "git clone ${uri} ${dest}",
     path      => "${home}/homebrew/bin/",
     creates   => "${dest}",
     logoutput => "true",
