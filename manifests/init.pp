@@ -2,9 +2,9 @@
 #
 # Examples
 #
-#  include adminvim
+#  include adamvim
 
-class vim {
+class adamvim {
  
   exec { 'git clone https://github.com/raphael/adam-vim.git /Users/ggoodyer/.vim':
     path => "/opt/boxen/homebrew/bin/",
@@ -14,7 +14,7 @@ class vim {
 
   exec { 'ln -s /Users/ggoodyer/.vim/.vimrc /Users/ggoodyer/.vimrc':
     path => "/bin/",
-    creates => "/Users/ggoodyer/.vimrc",
+    creates => "/Users/ggoody   er/.vimrc",
     logoutput => "true",
   }
 }
