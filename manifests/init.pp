@@ -18,6 +18,7 @@ class adamvim {
   notify{"The vimdest value is: ${adamvim::config::vimdest}": }
   notify{"The data value is: ${adamvim::config::boxendatadir}": }
   notify{"The uri value is: ${adamvim::config::uri}": }
+  notify{"The uri value is: ${boxen::config}": }
 
   # clone the git repo to tmp
   exec { 'clone adam-vim.git':
