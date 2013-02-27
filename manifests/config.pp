@@ -10,7 +10,7 @@ class adamvim::config {
   $bin          = "${boxen::config::home}/homebrew/bin/"
   $boxendatadir = "${boxen::config::datadir}"
   $uri          = 'https://github.com/raphael/adam-vim.git'
-  #$userdir      = "/Users/${boxen::config::user}"
+  # $userdir      = "/Users/${boxen::config::user}"
   $userdir      = "/Users/ggoodyer"
   $vimdest      = "${userdir}/.vim"
   $vimsrc       = "${boxen::config::datadir}/adam-vim" 
