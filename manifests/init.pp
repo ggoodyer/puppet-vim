@@ -6,38 +6,30 @@
 
 class adamvim {
 
-  include boxen::config
+  include adamvim::config
 
-  $home    = "${boxen::config::home}"
-  $bindir  = "${home}/bin"
-  $bin     = "${bindir}/"
-  $uri     = 'https://github.com/raphael/adam-vim.git'
-  
-  $userdir = '/Users/ggoodyer'
-  $vim     = "${userdir}/.vim"
-  $vimrc   = "${userdir}/.vimrc"
+  file { [
+    $adamvim::config::datadir,
+    $adamvim::config::userdir
+  ]:
+    ensure => directory
+  }
 
   # clone the git repo to tmp
   exec { 'clone adam-vim.git':
-    command   => "git clone ${uri}",
-    path      => "${home}/homebrew/bin/",
-    creates   => "${vim}",
-    cwd       => "/tmp/",
+    command   => "git clone ${adamvim::config::uri}",
+    path      => "${adamvim::config::bin}",
+    creates   => "${adamvim::config::vimdest}",
+    cwd       => "${adamvim::config::datadir}",
     tries     => "3",
-    timeout   => "30",
+    timeout   => "15",
     logoutput => "true",
   }
  
-  # copy the repo to ~/.vim
-  file { "${vim}":
-    source    => "/tmp/adam-vim",
-    recurse   => true,
-  }
-
   # More maintainable:
-  file { "${vim}/.vimrc":
+  file { "${adamvim::config::vimdest}":
     ensure    => link,
-    target    => "${vimrc}",
+    target    => "${adamvim::config::vimsrc}",
   }  
 
 }
