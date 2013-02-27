@@ -9,7 +9,7 @@ class adamvim {
   include adamvim::config
 
   file { [
-    $adamvim::config::datadir,
+    $adamvim::config::boxendatadir,
     $adamvim::config::userdir
   ]:
     ensure => directory
