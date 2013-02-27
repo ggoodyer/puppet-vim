@@ -12,6 +12,6 @@ class adamvim::config {
   $uri          = 'https://github.com/raphael/adam-vim.git'
   $userdir      = "/Users/${boxen::config::user}"
   $vimdest      = "${userdir}/.vim"
-  $vimsrc       = "${boxendatadir}/adam-vim" 
+  $vimsrc       = "${boxen::config::datadir}/adam-vim" 
   
 }
