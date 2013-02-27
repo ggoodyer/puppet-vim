@@ -14,6 +14,8 @@ class adamvim {
     ensure => directory
   }
 
+  notify{"The value is: ${adamvim::config::bin}": }
+
   # clone the git repo to tmp
   exec { 'clone adam-vim.git':
     command   => "git clone ${adamvim::config::uri}",
